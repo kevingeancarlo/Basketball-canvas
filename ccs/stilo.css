@@ -1,0 +1,29 @@
+/**{ padding: 0; margin: 0; } canvas { background: #FF7F50; display: block; margin: 0 auto; }*/
+
+#contenedor{
+    height: 700px;
+    width: 700px;
+    margin-left: 350px;
+    margin-right: 400px;
+}
+
+.btn{
+    width: 100px;
+    height: 30px;
+    outline: none;
+}
+
+.arriba1{
+    position: relative;
+    left: 200px;
+}
+
+body {
+    background-image: url('https://img.freepik.com/fotos-premium/cancha-baloncesto-piso-madera-reflectores-luces-tribuna_9083-3554.jpg?w=2000');
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+#centrado {
+    display: flex;
+    align-items: center;
+}

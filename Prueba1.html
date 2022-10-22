@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Canvas Workshop - lesson 3: bounce off the walls</title>
+    <link rel="stylesheet" type="text/css" href="./ccs/stilo.css">
+    <!-- <style>* { padding: 0; margin: 0; } canvas { background: #FF7F50; display: block; margin: 0 auto; }</style> --> 
+</head>
+<body>
+<!-- 
+<ul>
+<li><a href="Capturafondo.html" target="juego"> Captura juego </a></li>
+</ul>
+--> 
+<iframe name="juego" src="" style="width: 500px; height: 300px; border: none;" ></iframe>
+
+<canvas id="canva" width="600px" height="350px"></canvas>
+
+
+
+<!--
+<button onclick="moverizquierda1();"> ▲ </button>
+
+<button onclick="moverderecha1();"> ▼ </button>
+<button onclick="moverarriba1();"> ◀ </button>
+<button onclick="moverabajo1();"> ▶ </button>
+
+<button onclick="moverizquierda2();"> △ </button>
+<button onclick="moverderecha2();"> ▽ </button>
+<button onclick="moverarriba2();"> ◁ </button>
+<button onclick="moverabajo2();"> ▷ </button>
+--> 
+
+
+<script>
+    var canvas = document.getElementById("canva");
+    var lienzo = canvas.getContext("2d");
+    var ballRadius = 15;
+    var ballRadius1 = 12;
+    var ballRadius2 = 12;
+    var x = canvas.width/2;
+    var y = canvas.height-30;
+    var dx = 2;
+    var dy = -2;
+    var posxj1 = 150;
+    var posyj1 = 170;
+    var posxj2 = 470;
+    var posyj2 = 170;
+    var Player_1 = document.getElementById("Player1");
+    var tops = 150;
+    var lefts = 170;
+    var tops2 = 470;
+    var lefts2 = 170;
+    var img = new Image();
+    img.src = "Cancha.jpg";
+
+    img.onload = function(){
+        lienzo.drawImage(img, 0, 0);
+}
+    
+    var sonido = new Audio();
+
+window.onload = function(){
+	    document.onkeydown = teclas;
+}
+
+
+
+
+
+function teclas (event){
+var codigo = event.keyCode;
+var codigo2 = event.keyCode;
+//var cuapos = cuadrado.getBoundingClientRect()
+
+    if (codigo==40){
+		tops += 3;
+		//Player_1.style.top = tops+"px";
+	}
+	if (codigo==38){
+		tops -= 3;
+		//Player_1.style.top = tops+"px";
+	}
+	if (codigo==39){
+		lefts += 3;
+		//Player_1.style.left = lefts+"px";
+	}
+	if (codigo==37){
+		lefts -= 3;
+		//Player_1.style.left = lefts+"px";
+	}
+
+    // Jugador 2
+    
+    if (codigo2==87){
+		tops2 -= 3;
+		//Player_1.style.top = tops+"px";
+	}
+    if (codigo2==83){
+		tops2 += 3;
+		//Player_1.style.top = tops+"px";
+	}
+    if (codigo2==68){
+		lefts2 += 3;
+		//Player_1.style.left = lefts+"px";
+	}
+    if (codigo2==65){
+		lefts2 -= 3;
+		//Player_1.style.left = lefts+"px";
+	}
+}
+
+function moverizquierda1(){
+if(posyj1 >= 40){
+posyj1 -=7;}
+}
+function moverderecha1(){
+if(posyj1 <= 320){
+posyj1 +=7;}
+}
+function moverarriba1(){
+if(posxj1 <= 220){
+posxj1 -=7;}
+}
+function moverabajo1(){
+    if(posxj1 >= 100){
+posxj1 +=7;}
+}
+
+
+function moverizquierda2(){
+if(posyj2 >= 40){
+posyj2 -=7;}
+}
+function moverderecha2(){
+if(posyj2 <= 320){
+posyj2 +=7;}
+}
+function moverarriba2(){
+if(posxj2 >= 420){
+posxj2 -=7;}
+}
+function moverabajo2(){
+    if(posxj2 <= 510){
+posxj2 +=7;}
+}
+
+
+function drawBall() {
+    //Bola principal 
+    lienzo.beginPath();
+    lienzo.arc(x, y, ballRadius, 0, Math.PI*2);
+    lienzo.fillStyle = "#000000";
+    lienzo.fill();
+    lienzo.closePath();
+
+    lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     //Dibuja un rectángulo
+     lienzo.strokeRect(10, 10, 580, 330);
+
+     lienzo.strokeStyle="rgb(255, 255, 255)";
+     lienzo.beginPath();
+     lienzo.arc(305,170,50,0,2*Math.PI,true);
+     lienzo.stroke();
+
+     lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     lienzo.strokeRect(10, 95, 100, 160); 
+     lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     lienzo.strokeRect(10, 119, 40, 110); 
+    
+     lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     lienzo.strokeRect(500, 95, 90, 160);
+     lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     lienzo.strokeRect(550, 119, 40, 110);
+
+     lienzo.strokeStyle = 'rgb(255, 255, 255)';
+     lienzo.strokeRect(305, 10, 0, 330); 
+
+     lienzo.fillStyle="#006400";
+     lienzo.beginPath();
+     lienzo.arc(lefts,tops,ballRadius1,0,2*Math.PI,true);
+     lienzo.fill();     
+
+     lienzo.fillStyle="#483D8B";
+     lienzo.beginPath();
+     lienzo.arc(tops2,lefts2,ballRadius2,0,2*Math.PI,true);
+     lienzo.fill();
+}
+
+function sonidogol(){
+
+if(x == 0 && 10 < canvas.height-ballRadius < 95){
+    sonido.src="gol-2-2.mp3";
+    sonido.play();
+}
+if(x == 600 && 10 < canvas.height-ballRadius < 95){
+    sonido.src="gol-2-2.mp3";
+    sonido.play();
+}
+
+}
+
+
+
+function draw() {
+    lienzo.clearRect(0, 0, canvas.width, canvas.height);
+    lienzo.drawImage(img, 0, 0);
+    drawBall();
+    sonidogol();
+    
+    if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+        dx = -dx;
+    }
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+        dy = -dy;
+    }
+    /*if(y == posyj1){
+      
+      dy = -dy;  
+    }
+
+   if(x == posxj1 || x == posxj2){
+      
+    dx = -dx;  
+   }
+
+    if(y == posyj1 || x == posyj2){
+      
+    dy = -dy;  
+    }*/
+
+
+    
+    x += dx;
+    y += dy;
+}
+
+setInterval(draw, 10);
+
+</script>
+
+</body>
+</html>

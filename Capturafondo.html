@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="Scripts/Fondo_Webcam.js"></script>
+    <script>
+    window.onload = iniciar_WEBCAM;
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!--Contenedor para video -->
+        <div class="video-wrap">
+            <video id="video" playsinline autoplay></video>
+        </div>
+    
+        <!-- Botón para capturar desde la WEBCAM 
+        <div class="controller">
+            <button id="snap">Capture</button>
+        </div>
+        -->
+        <!-- Canvas para publicar la imágen -->
+        <canvas id="canvas" width="480" height="320"></canvas>
+</body>
+</html>

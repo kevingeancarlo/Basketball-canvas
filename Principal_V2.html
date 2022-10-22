@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="Scripts/Fondo_Webcam.js"></script>
+    <script>
+    window.onload = iniciar_WEBCAM;
+    </script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamedev Canvas Workshop</title>
+    <link rel="stylesheet" type="text/css" href="./ccs/stilo.css">
+    <!-- 
+    <style>
+      * { padding: 0; margin: 0; }
+      canvas { background: #eee; display: block; margin: 0 auto; }
+    </style>
+    --> 
+</head>
+<body>
+        <!--Contenedor para video -->
+      <div class="video-wrap">
+          <video id="video" playsinline autoplay></video>
+      </div>
+  
+      <!-- Botón para capturar desde la WEBCAM 
+      <div class="controller">
+          <button id="snap">Capture</button>
+      </div>
+      -->
+      <!-- Canvas para publicar la imágen -->
+      <canvas id="canvas" width="240" height="150"></canvas>
+<!-- Canvas de mi juego -->
+<center>
+  <canvas id="myCanvas" width="600" height="300"></canvas>
+</center>
+  
+
+<script
+  type="text/javascript" src="funciones.js"></script>
+</script>
+</body>
+</html>
